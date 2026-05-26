@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Green Impact Studios | Sustainability & Accessibility Audits</title>
+  <meta
+    name="description"
+    content="Green Impact Studios provides digital sustainability and accessibility audits that improve commercial and B-Corp web performance."
+  />
+  <style>
+    :root {
+      --bg: #000000;
+      --text: #ffffff;
+      --text-soft: #e7e7e7;
+      --line: #222222;
+      --accent: #00ff66;
+      --max: 68rem;
+      --s1: 0.5rem;
+      --s2: 1rem;
+      --s3: 1.5rem;
+      --s4: 2rem;
+      --s5: 3rem;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      text-rendering: optimizeLegibility;
+    }
+
+    a,
+    a:visited {
+      color: var(--text);
+      text-decoration-color: transparent;
+      text-underline-offset: 0.2em;
+    }
+
+    a:hover,
+    a:active {
+      text-decoration-color: var(--accent);
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible {
+      outline: 0.2rem solid var(--accent);
+      outline-offset: 0.2rem;
+      border-radius: 0.15rem;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: var(--s2);
+      top: -8rem;
+      z-index: 1000;
+      padding: 0.7rem 1rem;
+      background: #000000;
+      color: #ffffff;
+      border: 1px solid var(--accent);
+      text-decoration: none;
+    }
+
+    .skip-link:focus-visible {
+      top: var(--s2);
+    }
+
+    .wrap {
+      width: min(100% - 2rem, var(--max));
+      margin-inline: auto;
+    }
+
+    header,
+    footer {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    header {
+      padding: var(--s4) 0 var(--s5);
+    }
+
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .brand {
+      margin: 0;
+    }
+
+    .brand-lockup {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+      font-size: clamp(1rem, 1.3vw, 1.2rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+    }
+
+    .brand-word {
+      display: inline-flex;
+      align-items: center;
+      line-height: 1;
+    }
+
+    .brand-word--impact {
+      padding: 0.24rem 0.48rem;
+      background: var(--accent);
+      color: #000000;
+    }
+
+    .brand-word--studios {
+      padding: 0.24rem 0.48rem;
+      color: var(--text-soft);
+      border: 1px solid var(--line);
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .main-nav a,
+    .main-nav a:visited {
+      font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: #a0a0a0;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .main-nav a:hover,
+    .main-nav a:active {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    main {
+      padding: var(--s5) 0;
+    }
+
+    section + section {
+      margin-top: var(--s5);
+      padding-top: var(--s5);
+      border-top: 1px solid var(--line);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0 0 var(--s2);
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      max-width: 20ch;
+    }
+
+    h2 {
+      font-size: clamp(1.35rem, 3.2vw, 1.9rem);
+      line-height: 1.2;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      line-height: 1.3;
+    }
+
+    p {
+      color: var(--text);
+      max-width: 68ch;
+    }
+
+    .lead {
+      color: var(--text-soft);
+      font-size: 1.125rem;
+      max-width: 62ch;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+      gap: var(--s2);
+      margin-top: var(--s3);
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      padding: var(--s3);
+      background: #040404;
+    }
+
+    .pricing-matrix {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--s2);
+      margin-top: var(--s3);
+    }
+
+    .tier {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s2);
+      border: 1px solid var(--line);
+      background: #040404;
+      padding: var(--s3);
+      min-height: 100%;
+    }
+
+    .tier--featured {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(0, 255, 102, 0.18);
+    }
+
+    .tier-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s1);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.5rem;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .tier-price {
+      margin: 0;
+      font-size: clamp(1.9rem, 4vw, 2.6rem);
+      font-weight: 800;
+      line-height: 1.05;
+    }
+
+    .tier-focus {
+      color: var(--text-soft);
+      font-size: 0.96rem;
+    }
+
+    .tier-list {
+      margin: 0;
+      padding-left: 1.15rem;
+      color: var(--text-soft);
+    }
+
+    .tier-list li + li {
+      margin-top: 0.45rem;
+    }
+
+    .tier-action {
+      margin-top: auto;
+      display: inline-flex;
+      align-self: flex-start;
+      padding: 0.65rem 0.95rem;
+      border: 1px solid var(--accent);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .tier-action:hover,
+    .tier-action:active {
+      color: var(--accent);
+    }
+
+    form {
+      margin-top: var(--s3);
+      max-width: 36rem;
+    }
+
+    section[aria-labelledby="contact-title"] {
+      scroll-margin-top: var(--s3);
+    }
+
+    .field {
+      margin-bottom: var(--s2);
+    }
+
+    label {
+      display: inline-block;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: #080808;
+      color: var(--text);
+      font: inherit;
+      padding: 0.75rem 0.85rem;
+    }
+
+    textarea {
+      min-height: 8rem;
+      resize: vertical;
+    }
+
+    select {
+      appearance: none;
+    }
+
+    form:focus-visible {
+      outline: 0.2rem solid var(--accent);
+      outline-offset: 0.4rem;
+      border-radius: 0.2rem;
+    }
+
+    button {
+      display: inline-block;
+      border: 1px solid var(--accent);
+      background: #000000;
+      color: #ffffff;
+      font: inherit;
+      font-weight: 700;
+      padding: 0.75rem 1.2rem;
+      cursor: pointer;
+    }
+
+    button:hover,
+    button:active {
+      color: var(--accent);
+    }
+
+    .micro-proof {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      max-width: 78ch;
+    }
+
+    footer {
+      padding: var(--s4) 0;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
+    @media (max-width: 48rem) {
+      .pricing-matrix {
+        grid-template-columns: 1fr;
+      }
+
+      .tier {
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header>
+    <div class="wrap site-header">
+      <p class="brand" aria-label="Green Impact Studios">
+        <span class="sr-only">Green Impact Studios</span>
+        <span class="brand-lockup" aria-hidden="true">
+          <span class="brand-word brand-word--green">Green</span>
+          <span class="brand-word brand-word--impact">Impact</span>
+          <span class="brand-word brand-word--studios">Studios</span>
+        </span>
+      </p>
+      <nav class="main-nav" aria-label="Main Navigation">
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" class="wrap">
+    <section aria-labelledby="hero-title">
+      <h1 id="hero-title">Improve your web performance through sustainability and accessibility audits.</h1>
+      <p class="lead">
+        Accelerate your core web vitals, reduce legal compliance liabilities, and improve your digital carbon footprint.
+      </p>
+      <p>
+        Aligning your interface with sustainable and inclusive web standards unlocks faster conversions, protects your brand from compliance risks, and satisfies corporate ESG mandates.
+      </p>
+    </section>
+
+    <section id="services" aria-labelledby="services-title">
+      <h2 id="services-title">Services</h2>
+      <div class="services-grid">
+        <article class="card" aria-labelledby="sustainability-title">
+          <h3 id="sustainability-title">Digital Sustainability Audits</h3>
+          <p>
+            We assess transfer weight, render efficiency, hosting patterns, and content architecture to reduce emissions per visit while improving user
+            experience and operating performance.
+          </p>
+        </article>
+        <article class="card" aria-labelledby="accessibility-title">
+          <h3 id="accessibility-title">Interaction &amp; Accessibility Audits</h3>
+          <p>
+            We evaluate keyboard usability, focus order, semantic structure, form behavior, and assistive technology compatibility against WCAG 2.2
+            principles with clear remediation priorities.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="pricing" aria-labelledby="price-title">
+        <h2 id="price-title">Pricing</h2>
+      <div class="pricing-matrix" role="list" aria-label="Three-tier digital audit pricing matrix">
+        <article class="tier" role="listitem" aria-labelledby="tier-one-title">
+          <div class="tier-header">
+            <h3 id="tier-one-title">The Compliance Check</h3>
+          </div>
+          <p class="tier-price">£1,450</p>
+          <p class="tier-focus">Focus: immediate risk and baseline health diagnostics.</p>
+          <ul class="tier-list">
+            <li>Automated scanning of up to 10 pages</li>
+            <li>Core homepage manual inspection</li>
+            <li>Prioritized matrix of accessibility failures</li>
+            <li>Baseline carbon emission score</li>
+            <li>Text-based Notion summary</li>
+          </ul>
+          <a class="tier-action" href="#contact" aria-label="Select The Compliance Check package">Select Package</a>
+        </article>
+
+        <article class="tier tier--featured" role="listitem" aria-labelledby="tier-two-title">
+          <div class="tier-header">
+            <h3 id="tier-two-title">The People &amp; Planet Blueprint</h3>
+            <span class="badge" aria-label="Bestseller">Bestseller</span>
+          </div>
+          <p class="tier-price">£2,850</p>
+          <p class="tier-focus">Focus: complete user-journey analysis and diagnostic depth.</p>
+          <ul class="tier-list">
+            <li>Everything in the Compliance Check</li>
+            <li>Manual testing of 4 core transactional user journeys</li>
+            <li>Keyboard layout and native screen reader assessment</li>
+            <li>Asset weight breakdown: Images, JS, Fonts</li>
+            <li>Pre-recorded 10-minute video walkthrough</li>
+          </ul>
+          <a class="tier-action" href="#contact" aria-label="Select The People and Planet Blueprint package">Select Package</a>
+        </article>
+
+        <article class="tier" role="listitem" aria-labelledby="tier-three-title">
+          <div class="tier-header">
+            <h3 id="tier-three-title">The Portfolio Audit</h3>
+          </div>
+          <p class="tier-price">£5,450</p>
+          <p class="tier-focus">Focus: multi-domain or continuous alignment.</p>
+          <ul class="tier-list">
+            <li>Everything in the Blueprint tier</li>
+            <li>Diagnostics across 3 distinct subdomains or digital properties</li>
+            <li>Comparative benchmark scoring against 3 core market competitors</li>
+            <li>Dedicated 14-day asynchronous review channel</li>
+          </ul>
+          <a class="tier-action" href="#contact" aria-label="Select The Portfolio Audit package">Select Package</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact Form</h2>
+      <form id="contact-form" action="#" method="post" tabindex="-1">
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" autocomplete="name" required />
+        </div>
+        <div class="field">
+          <label for="email">Work Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
+        </div>
+        <div class="field">
+          <label for="website">Website URL</label>
+          <input id="website" name="website" type="url" inputmode="url" required />
+        </div>
+        <div class="field">
+          <label for="selected-tier">Selected Tier</label>
+          <select id="selected-tier" name="selected-tier">
+            <option value="" selected>Not sure yet / General inquiry</option>
+            <option value="compliance-check">The Compliance Check (£1,450)</option>
+            <option value="people-planet-blueprint">The People &amp; Planet Blueprint (£2,850)</option>
+            <option value="portfolio-audit">The Portfolio Audit (£5,450)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="message">Message (Optional)</label>
+          <textarea id="message" name="message"></textarea>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p class="micro-proof">
+        Hosted on renewable server grids, using dark mode pixel preservation, emitting less than 0.01g of CO2 per visit.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

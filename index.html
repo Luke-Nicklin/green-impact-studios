@@ -83,10 +83,14 @@
       margin-inline: auto;
     }
 
-    header,
-    footer {
-      border-top: 1px solid var(--line);
+    /* constrain header/footer horizontal rules to content width */
+    header > .wrap {
       border-bottom: 1px solid var(--line);
+      padding-bottom: var(--s3);
+    }
+
+    footer > .wrap {
+      border-top: 1px solid var(--line);
     }
 
     header {
@@ -144,7 +148,7 @@
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 1.5rem;
     }
 
     .main-nav a,
@@ -180,23 +184,127 @@
       padding: var(--s5) 0;
     }
 
+    /* Standard section divider: single 1px line aligned to content width */
     section + section {
       margin-top: var(--s5);
       padding-top: var(--s5);
       border-top: 1px solid var(--line);
     }
 
-    /* Left-align hero content */
-    section[aria-labelledby="hero-title"] {
-      text-align: left;
+    /* Hero: text-led left column with inline SVG visual on the right */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      align-items: center;
+      gap: clamp(1.5rem, 4vw, 3rem);
     }
 
-    section[aria-labelledby="hero-title"] h1,
-    section[aria-labelledby="hero-title"] .lead,
-    section[aria-labelledby="hero-title"] p {
+    .hero-copy {
+      width: 100%;
+      max-width: var(--max);
+      height: auto;
+      display: block;
+    }
+
+    .hero-copy p {
       margin-left: 0;
       margin-right: 0;
       text-align: left;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: var(--s3);
+    }
+
+    .hero-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.68rem 1rem;
+      border: 1px solid #1F1F1F;
+      text-decoration: none;
+      font-weight: 700;
+      line-height: 1;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .hero-btn--primary,
+    .hero-btn--primary:visited {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #000000;
+    }
+
+    .hero-btn--primary:hover,
+    .hero-btn--primary:active {
+      background: #00C84F;
+      border-color: #00C84F;
+      color: #000000;
+      text-decoration: none;
+    }
+
+    .hero-btn--secondary,
+    .hero-btn--secondary:visited {
+      background: transparent;
+      color: var(--text);
+    }
+
+    .hero-btn--secondary:hover,
+    .hero-btn--secondary:active {
+      border-color: var(--accent);
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .hero-visual {
+      display: grid;
+      place-items: center;
+      min-height: 23rem;
+      background: transparent;
+    }
+
+    .hero-laptop {
+      width: min(100%, 40rem);
+      height: auto;
+      max-width: 100%;
+      display: block;
+    }
+
+    .hero-laptop .laptop-lid {
+      transform-origin: 280px 254px;
+      animation: laptopOpen 1.6s cubic-bezier(0.22, 0.8, 0.24, 1) 1 forwards;
+    }
+
+    .hero-laptop .accent-line {
+      stroke-dasharray: 52;
+      stroke-dashoffset: 52;
+      animation: accentDraw 1.1s ease-out 1.1s 1 forwards;
+    }
+
+    @keyframes laptopOpen {
+      0% {
+        transform: translateY(188px) scaleY(0.06);
+      }
+      72% {
+        transform: translateY(-5px) scaleY(1.03);
+      }
+      100% {
+        transform: translateY(0) scaleY(1);
+      }
+    }
+
+    @keyframes accentDraw {
+      0% {
+        stroke-dashoffset: 52;
+        opacity: 0.75;
+      }
+      100% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+      }
     }
 
     h1,
@@ -239,24 +347,27 @@
       max-width: 62ch;
     }
 
-    .services-grid {
+    /* What We Do grid layout properties configuration */
+    .what-we-do-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
       gap: var(--s2);
       margin-top: var(--s3);
     }
 
-    .card {
-      border: 1px solid var(--line);
-      padding: var(--s3);
+    .what-we-do-grid .card {
+      text-align: left;
+      border: 0;
+      padding: var(--s3) 0;
       background: transparent;
       color: var(--text);
     }
 
     .pricing-matrix {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: var(--s2);
+      width: 100%;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--s3);
       margin-top: var(--s3);
     }
 
@@ -270,6 +381,9 @@
       padding: var(--s3);
       min-height: 100%;
       color: var(--text);
+      max-width: none;
+      width: 100%;
+      margin-inline: 0;
     }
 
     .tier--featured {
@@ -344,7 +458,6 @@
       background: #00C84F;
     }
 
-    /* Keep pricing titles on a single line to align card content */
     .pricing-matrix .tier h3 {
       white-space: nowrap;
       overflow: hidden;
@@ -430,9 +543,34 @@
       html {
         scroll-behavior: auto;
       }
+
+      .hero-laptop,
+      .hero-laptop .accent-line {
+        animation: none;
+      }
+
+      .hero-laptop .laptop-lid {
+        transform: none;
+      }
+
+      .hero-laptop .accent-line {
+        stroke-dashoffset: 0;
+      }
     }
 
     @media (max-width: 48rem) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        min-height: 12rem;
+      }
+
+      .hero-laptop {
+        width: min(100%, 25rem);
+      }
+
       .pricing-matrix {
         grid-template-columns: 1fr;
       }
@@ -457,8 +595,8 @@
         </span>
       </p>
       <nav class="main-nav" aria-label="Main Navigation">
+        <a href="#what-we-do">What we do</a>
         <a href="#services">Services</a>
-        <a href="#pricing">Pricing</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
@@ -466,53 +604,84 @@
 
   <main id="main-content" class="wrap">
     <section aria-labelledby="hero-title">
-      <h1 id="hero-title">Sustainable. 
-        <br>Accessible. 
-        <br>Profitable.
-      </h1>
-      <p class="lead">
-        Improve your web performance, fix common accessibility issues, and reduce your digital carbon footprint with our comprehensive audits.
-      </p>
-      <p>
-        Aligning your interface with sustainable and inclusive web standards unlocks faster conversions, protects your brand from compliance risks, and satisfies corporate ESG mandates.
-      </p>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <h1 id="hero-title">Sustainable. 
+            <br>Accessible. 
+            <br>Profitable.
+          </h1>
+          <p class="lead">
+            Improve your web performance, fix common accessibility issues, and reduce your digital carbon footprint with our comprehensive audits.
+          </p>
+          <p>
+            Aligning your interface with sustainable and inclusive web standards unlocks faster conversions, protects your brand from compliance risks, and satisfies corporate ESG mandates.
+          </p>
+          <div class="hero-actions">
+            <a class="hero-btn hero-btn--primary" href="#contact">Book an audit</a>
+            <a class="hero-btn hero-btn--secondary" href="#services">Explore services</a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <svg class="hero-laptop" viewBox="0 0 560 320" width="100%" height="auto" role="presentation" focusable="false" xmlns="http://www.w3.org/2000/svg">
+            <g class="laptop-lid" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="122" y="62" width="316" height="192" rx="12" stroke="#333333" stroke-width="1.5"/>
+              <rect x="140" y="80" width="280" height="156" rx="6" stroke="#4A4A4A" stroke-width="1"/>
+              <circle cx="280" cy="72" r="2" stroke="#606060" stroke-width="1"/>
+            </g>
+            <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M66 268 L210 268 L350 268 L494 268" stroke="#333333" stroke-width="1.5"/>
+              <path d="M98 268 L132 286 L428 286 L462 268" stroke="#333333" stroke-width="1.5"/>
+              <path class="accent-line" d="M256 276 L304 276" stroke="#10B981" stroke-width="1.5"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section id="what-we-do" aria-labelledby="what-we-do-title">
+        <h2 id="what-we-do-title">What we do</h2>
+        <div class="what-we-do-grid">
+          <article class="card" aria-labelledby="sustainability-title">
+            <h3 id="sustainability-title">Sustainability</h3>
+            <p>
+              Reduce your site’s carbon footprint while improving user experience. Our sustainability audits identify high-impact savings, cutting
+              unnecessary resource transfer, optimising hosting patterns, and prioritising changes that lower emissions per visit.
+            </p>
+          </article>
+
+          <article class="card" aria-labelledby="accessibility-title">
+            <h3 id="accessibility-title">Accessibility</h3>
+            <p>
+              Make your product usable for everyone and protect revenue by removing barriers that exclude customers. We prioritise fixes that reduce
+              legal risk, improve conversions, and broaden market reach.
+            </p>
+          </article>
+
+          <article class="card" aria-labelledby="performance-title">
+            <h3 id="performance-title">Web performance</h3>
+            <p>
+              Speed up critical journeys to increase conversion and reduce bounce. Our performance audits find bottlenecks in rendering, network,
+              and third-party behaviour so your fastest users become your happiest customers.
+            </p>
+          </article>
+        </div>
     </section>
 
     <section id="services" aria-labelledby="services-title">
       <h2 id="services-title">Services</h2>
-      <div class="services-grid">
-        <article class="card" aria-labelledby="sustainability-title">
-          <h3 id="sustainability-title">Digital sustainability audits</h3>
-          <p>
-            We assess transfer weight, render efficiency, hosting patterns, and content architecture to reduce emissions per visit while improving user
-            experience and operating performance.
-          </p>
-        </article>
-        <article class="card" aria-labelledby="accessibility-title">
-          <h3 id="accessibility-title">Interaction &amp; accessibility audits</h3>
-          <p>
-            We evaluate keyboard usability, focus order, semantic structure, form behavior, and assistive technology compatibility against WCAG 2.2
-            principles with clear remediation priorities.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <section id="pricing" aria-labelledby="price-title">
-        <h2 id="price-title">Pricing</h2>
-      <div class="pricing-matrix" role="list" aria-label="Three-tier digital audit pricing matrix">
+      <div class="pricing-matrix" role="list" aria-label="Two-tier digital audit services matrix">
         <article class="tier" role="listitem" aria-labelledby="tier-one-title">
           <div class="tier-header">
             <h3 id="tier-one-title">The Compliance Check</h3>
           </div>
           <p class="tier-price">£1,450</p>
-          <p class="tier-focus">Focus: immediate risk and baseline health diagnostics.</p>
+          <p class="tier-focus">Focus: diagnostic risk assessment and baseline health check.</p>
           <ul class="tier-list">
             <li>Automated scanning of up to 10 pages</li>
             <li>Core homepage manual inspection</li>
             <li>Prioritized matrix of accessibility failures</li>
             <li>Baseline carbon emission score</li>
-            <li>Text-based Notion summary</li>
+            <li>Interactive Notion remediation dashboard</li>
           </ul>
           <a class="tier-action" href="#contact" aria-label="Select The Compliance Check package">Select package</a>
         </article>
@@ -528,25 +697,10 @@
             <li>Everything in the Compliance Check</li>
             <li>Manual testing of 4 core transactional user journeys</li>
             <li>Keyboard layout and native screen reader assessment</li>
-            <li>Asset weight breakdown: Images, JS, Fonts</li>
+            <li>Payload optimization blueprint (images, JS, fonts)</li>
             <li>Pre-recorded 10-minute video walkthrough</li>
           </ul>
           <a class="tier-action" href="#contact" aria-label="Select The People and Planet Blueprint package">Select package</a>
-        </article>
-
-        <article class="tier" role="listitem" aria-labelledby="tier-three-title">
-          <div class="tier-header">
-            <h3 id="tier-three-title">The Portfolio Audit</h3>
-          </div>
-          <p class="tier-price">£5,450</p>
-          <p class="tier-focus">Focus: multi-domain or continuous alignment.</p>
-          <ul class="tier-list">
-            <li>Everything in the Blueprint tier</li>
-            <li>Diagnostics across 3 distinct subdomains or digital properties</li>
-            <li>Comparative benchmark scoring against 3 core market competitors</li>
-            <li>Dedicated 14-day asynchronous review channel</li>
-          </ul>
-          <a class="tier-action" href="#contact" aria-label="Select The Portfolio Audit package">Select package</a>
         </article>
       </div>
     </section>
@@ -572,7 +726,6 @@
             <option value="" selected>Not sure yet / General inquiry</option>
             <option value="compliance-check">The Compliance Check (£1,450)</option>
             <option value="people-planet-blueprint">The People &amp; Planet Blueprint (£2,850)</option>
-            <option value="portfolio-audit">The Portfolio Audit (£5,450)</option>
           </select>
         </div>
         <div class="field">

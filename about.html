@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About Us | Green Impact Studios</title>
+    <meta name="description"
+        content="Our founding manifesto and engineering stance on native digital accessibility compliance and sustainable front-end development." />
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-family=%22monospace%22 font-weight=%22900%22 font-size=%2280%22 fill=%22%2300FF66%22>[•]</text></svg>">
+    <style>
+        :root {
+            --bg: #F4F4F0;
+            /* architectural off-white */
+            --text: #1A1A1A;
+            /* crisp off-black */
+            --text-soft: #3A3A3A;
+            /* softer body text */
+            --line: #666666;
+            /* structural card borders */
+            --accent: #00E65A;
+            /* high-contrast green */
+            --max: 68rem;
+            --s1: 0.5rem;
+            --s2: 1rem;
+            --s3: 1.5rem;
+            --s4: 2rem;
+            --s5: 3rem;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            text-rendering: optimizeLegibility;
+        }
+
+        a,
+        a:visited {
+            color: var(--text);
+            text-decoration-color: transparent;
+            text-underline-offset: 0.2em;
+        }
+
+        a:hover,
+        a:active {
+            text-decoration-color: var(--accent);
+        }
+
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible {
+            outline: 0.2rem solid var(--accent);
+            outline-offset: 0.2rem;
+            border-radius: 0.15rem;
+        }
+
+        .skip-link {
+            position: absolute;
+            left: var(--s2);
+            top: -8rem;
+            z-index: 1000;
+            padding: 0.7rem 1rem;
+            background: #000000;
+            color: #ffffff;
+            border: 1px solid var(--accent);
+            text-decoration: none;
+        }
+
+        .skip-link:focus-visible {
+            top: var(--s2);
+        }
+
+        .wrap {
+            width: min(100% - 2rem, var(--max));
+            margin-inline: auto;
+        }
+
+        header>.wrap {
+            border-bottom: 1px solid var(--line);
+            padding-bottom: var(--s3);
+        }
+
+        footer>.wrap {
+            border-top: 1px solid var(--line);
+            padding-top: var(--s3);
+        }
+
+        header {
+            padding: var(--s4) 0 var(--s2);
+        }
+
+        .site-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .brand {
+            margin: 0;
+        }
+
+        .brand-lockup {
+            display: inline-flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+            font-size: clamp(1rem, 1.3vw, 1.2rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+        }
+
+        .brand-word {
+            display: inline-flex;
+            align-items: center;
+            line-height: 1;
+        }
+
+        .brand-word--green {
+            color: var(--text);
+        }
+
+        .brand-word--impact {
+            padding: 0.24rem 0.48rem;
+            background: var(--accent);
+            color: #000000;
+        }
+
+        .brand-word--studios {
+            padding: 0.24rem 0.48rem;
+            color: var(--text);
+            border: 1px solid var(--line);
+            background: transparent;
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .main-nav a,
+        .main-nav a:visited {
+            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+            font-size: 0.9rem;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            color: #666666;
+            text-decoration: none;
+            transition: color 0.15s ease, border-color 0.15s ease, background 0.12s ease;
+        }
+
+        .main-nav a:hover,
+        .main-nav a:active {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Highlight the active navigation page */
+        .main-nav a[aria-current="page"] {
+            color: var(--text);
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        main {
+            padding: var(--s5) 0;
+        }
+
+        section+section {
+            margin-top: var(--s5);
+            padding-top: var(--s5);
+            border-top: 1px solid var(--line);
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            margin: 0 0 var(--s2);
+        }
+
+        h1 {
+            font-size: clamp(2.4rem, 6vw, 4rem);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            max-width: 25ch;
+            overflow-wrap: normal;
+            word-break: keep-all;
+        }
+
+        h2 {
+            font-size: clamp(1.35rem, 3.2vw, 1.9rem);
+            line-height: 1.2;
+            text-align: left;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            line-height: 1.3;
+            font-weight: 700;
+        }
+
+        p {
+            color: var(--text);
+            max-width: 68ch;
+        }
+
+        .lead {
+            color: var(--text-soft);
+            font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+            max-width: 62ch;
+            line-height: 1.5;
+            margin-bottom: var(--s4);
+        }
+
+        /* Match the layout configuration of your index grid cards */
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+            gap: var(--s3);
+            margin-top: var(--s3);
+        }
+
+        .philosophy-card {
+            text-align: left;
+            border: 1px solid var(--line);
+            padding: var(--s3);
+            background: transparent;
+            color: var(--text);
+        }
+
+        /* Style the bottom Call-to-Action block contextually */
+        .about-cta {
+            max-width: 42rem;
+        }
+
+        .cta-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: var(--s3);
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.68rem 1.2rem;
+            border: 1px solid var(--text);
+            text-decoration: none;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .action-btn--primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #000000;
+        }
+
+        .action-btn--primary:hover {
+            background: #00C84F;
+            border-color: #00C84F;
+        }
+
+        .action-btn--secondary {
+            background: transparent;
+            color: var(--text);
+        }
+
+        .action-btn--secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        footer {
+            margin-top: var(--s3);
+            padding: var(--s4) 0;
+        }
+    </style>
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header>
+        <div class="wrap site-header">
+            <p class="brand" aria-label="Green Impact Studios">
+                <span class="sr-only">Green Impact Studios</span>
+                <a href="index.html" style="text-decoration: none;">
+                    <span class="brand-lockup" aria-hidden="true">
+                        <span class="brand-word brand-word--green">Green</span>
+                        <span class="brand-word brand-word--impact">Impact</span>
+                        <span class="brand-word brand-word--studios">Studios</span>
+                    </span>
+                </a>
+            </p>
+            <nav class="main-nav" aria-label="Main Navigation">
+                <a href="index.html#what-we-do">What we do</a>
+                <a href="index.html#services">Services</a>
+                <a href="about.html" aria-current="page">About</a>
+                <a href="index.html#contact">Contact us</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" class="wrap">
+        
+        <!-- Section 1: The Core Conviction / Hero Statement -->
+        <section aria-labelledby="about-hero-title">
+            <h1 id="about-hero-title">About Green Impact Studios</h1>
+            <p class="lead">
+                Most modern websites are buried under hidden digital waste, bloated files, and structural barriers that block 
+                disabled users. We believe digital products should be built cleanly at the root level - accessible to 100% of 
+                human visitors and optimised to minimise planetary impact.
+            </p>
+        </section>
+
+        <!-- Section 2: The Core Philosophy & Business Values -->
+        <section aria-labelledby="philosophy-title">
+            <h2 id="philosophy-title">What we believe in</h2>
+            
+            <div class="philosophy-grid">
+                <article class="philosophy-card">
+                    <h3>Fixing the root cause</h3>
+                    <p>
+                        We openly reject cheap, temporary fixes like automated AI accessibility widgets. These overlays merely 
+                        mask underlying coding defects, leaving your business exposed to regulatory non-compliance. Instead, we do 
+                        the meticulous engineering work directly in your source code, ensuring permanent, compliant, and rock-solid stability.
+                    </p>
+                </article>
+
+                <article class="philosophy-card">
+                    <h3>Technical integrity</h3>
+                    <p>
+                        Our approach is grounded in formal software engineering discipline, structural data logic, and rigorous 
+                        user experience best practices. We don’t just rearrange visual layouts; we rewrite front-end architecture so it smoothly 
+                        interfaces with assistive screen readers, voice navigation, and low-power mobile processors.
+                    </p>
+                </article>
+
+                <article class="philosophy-card">
+                    <h3>Dual-impact performance</h3>
+                    <p>
+                        We treat digital accessibility and sustainability as the exact same engineering problem. When you strip away 
+                        invisible tracking bloat, unlabelled structural elements, and heavy media payloads, you don't just clear the path 
+                        for disabled users—you directly slash your company's Scope 3 digital carbon emissions and boost your mobile conversion speeds.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Section 3: Next Steps / Call to Action -->
+        <section aria-labelledby="cta-title">
+            <h2 id="cta-title">Ready to modernize your digital assets?</h2>
+            <p>
+                Whether you need to improve accessibility and inclusion for your core informational pages or completely optimize a high-stakes transactional checkout funnel, we deliver measurable, high-impact results.
+            </p>
+            <div class="cta-actions">
+                <a class="action-btn action-btn--primary" href="index.html#services" aria-label="View our service tiers and pricing">View our services</a>
+                <a class="action-btn action-btn--secondary" href="index.html#contact" aria-label="Contact us to discuss your project">Get in touch</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <p class="micro-proof">&copy; 2026 Green Impact Studios. All rights reserved. Built with clean, sustainable code.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

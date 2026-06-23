@@ -4,9 +4,9 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Green Impact Studios | Sustainability & Accessibility Audits</title>
+	<title>Green Impact Studios | Inclusive UX & Digital Sustainability Agency</title>
 	<meta name="description"
-		content="Green Impact Studios provides digital sustainability and accessibility audits that improve commercial and B-Corp web performance." />
+		content="Green Impact Studios engineers high-performance, low-carbon frontends that meet WCAG accessibility standards and web sustainability goals." />
 	<link rel="icon" type="image/svg+xml"
 		href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-family=%22monospace%22 font-weight=%22900%22 font-size=%2280%22 fill=%22%2300FF66%22>[•]</text></svg>">
 	<style>
@@ -356,122 +356,158 @@
 			max-width: 62ch;
 		}
 
-		/* What We Do grid layout properties configuration */
-		.what-we-do-grid {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-			gap: var(--s2);
-			margin-top: var(--s3);
-		}
+		/* 1. What We Do Section (Informational Cards) */
+        .what-we-do-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+            gap: var(--s2);
+            margin-top: var(--s3);
+        }
 
-		.what-we-do-grid .card {
-			text-align: left;
-			border: 0;
-			padding: var(--s3) 0;
-			background: transparent;
-			color: var(--text);
-		}
+        .what-we-do-grid .card {
+            text-align: left;
+            border: 0;
+            padding: var(--s3) 0;
+            background: transparent;
+            color: var(--text);
+        }
 
-		.pricing-matrix {
-			display: grid;
-			width: 100%;
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-			gap: var(--s3);
-			margin-top: var(--s3);
-		}
+        /* 2. Services Section (The 3 Pricing Tiers) */
+        #services {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: var(--s3);
+            align-items: start;
+            margin-top: var(--s5); /* Gives breathing room below What We Do */
+        }
 
-		.tier {
-			display: flex;
-			flex-direction: column;
-			gap: var(--s2);
-			position: relative;
-			border: 1px solid var(--line);
-			background: transparent;
-			padding: var(--s3);
-			min-height: 100%;
-			color: var(--text);
-			max-width: none;
-			width: 100%;
-			margin-inline: 0;
-		}
+        #services>h2 {
+            grid-column: 1 / -1;
+            margin-bottom: 0;
+        }
 
-		.tier--featured {
-			border-color: var(--accent);
-			box-shadow: 0 0 0 1px rgba(0, 230, 90, 0.12);
-		}
+        .tier {
+            display: flex;
+            flex-direction: column;
+            gap: var(--s2);
+            position: relative;
+            border: 1px solid var(--line);
+            background: transparent;
+            padding: var(--s3);
+            min-height: 100%;
+            color: var(--text);
+            max-width: none;
+            width: 100%;
+            margin-inline: 0;
+        }
 
-		.tier-header {
-			display: flex;
-			align-items: center;
-			justify-content: flex-start;
-			gap: var(--s1);
-		}
+        .tier h3 {
+            margin: 0;
+        }
 
-		.badge {
-			display: inline-flex;
-			align-items: center;
-			padding: 0.2rem 0.6rem;
-			border: 1px solid var(--accent);
-			color: #000000;
-			font-size: 0.72rem;
-			font-weight: 700;
-			letter-spacing: 0.08em;
-			text-transform: uppercase;
-			white-space: nowrap;
-			position: absolute;
-			top: -0.7rem;
-			left: 50%;
-			transform: translateX(-50%);
-			background: var(--bg);
-			z-index: 3;
-			border-radius: 0.28rem;
-		}
+        .tier--featured {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 1px rgba(0, 230, 90, 0.12);
+        }
 
-		.tier-price {
-			margin: 0;
-			font-size: clamp(1.9rem, 4vw, 2.6rem);
-			font-weight: 800;
-			line-height: 1.05;
-		}
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.2rem 0.6rem;
+            border: 1px solid var(--accent);
+            color: #000000;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            position: absolute;
+            top: -0.7rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg);
+            z-index: 3;
+            border-radius: 0.28rem;
+        }
 
-		.tier-focus {
-			color: var(--text-soft);
-			font-size: 0.96rem;
-		}
+        .tier-price {
+            margin: 0;
+            line-height: 1.05;
+        }
 
-		.tier-list {
-			margin: 0;
-			padding-left: 1.15rem;
-			color: var(--text-soft);
-		}
+        .tier-price strong {
+            display: block;
+            font-size: clamp(1.9rem, 4vw, 2.6rem);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+        }
 
-		.tier-list li+li {
-			margin-top: 0.45rem;
-		}
+        .tier-price span {
+            display: block;
+            margin-top: 0.35rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-soft);
+        }
 
-		.tier-action {
-			margin-top: auto;
-			display: inline-flex;
-			align-self: flex-start;
-			padding: 0.65rem 0.95rem;
-			border: 1px solid var(--accent);
-			color: #000000;
-			background: var(--accent);
-			text-decoration: none;
-			font-weight: 700;
-		}
+        .tier-focus {
+            color: var(--text-soft);
+            font-size: 0.96rem;
+        }
 
-		.tier-action:hover,
-		.tier-action:active {
-			color: #000000;
-			background: #00C84F;
-		}
+        .tier-list {
+            margin: 0;
+            padding-left: 1.15rem;
+            color: var(--text-soft);
+        }
 
-		.pricing-matrix .tier h3 {
-			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			margin: 0;
+        .tier-list li+li {
+            margin-top: 0.45rem;
+        }
+
+        .tier-action {
+            margin-top: auto;
+            display: inline-flex;
+            align-self: flex-start;
+            padding: 0.65rem 0.95rem;
+            border: 1px solid var(--accent);
+            color: #000000;
+            background: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .tier-action:focus-visible {
+            outline: 0.2rem solid #000000;
+            outline-offset: 0.2rem;
+            box-shadow: 0 0 0 0.2rem var(--accent);
+        }
+
+        .tier-action:hover,
+        .tier-action:active {
+            color: #000000;
+            background: #00C84F;
+        }
+
+        /* 3. Responsive Breakpoints */
+        @media (max-width: 62rem) {
+            #services {
+                grid-template-columns: 1fr;
+            }
+            .tier {
+                min-height: auto;
+            }
+        }
+
+		/* Enforce single column stacking on small screen displays */
+		@media (max-width: 62rem) {
+			#services {
+				grid-template-columns: 1fr;
+			}
+
+			.tier {
+				min-height: auto;
+			}
 		}
 
 		form {
@@ -581,7 +617,7 @@
 				width: min(100%, 25rem);
 			}
 
-			.pricing-matrix {
+			#services {
 				grid-template-columns: 1fr;
 			}
 
@@ -608,7 +644,8 @@
 			<nav class="main-nav" aria-label="Main Navigation">
 				<a href="#what-we-do">What we do</a>
 				<a href="#services">Services</a>
-				<a href="#contact">Contact</a>
+				<a href="/about.html">About</a>
+				<a href="#contact">Contact us</a>
 			</nav>
 		</div>
 	</header>
@@ -617,21 +654,21 @@
 		<section aria-labelledby="hero-title">
 			<div class="hero-grid">
 				<div class="hero-copy">
-					<h1 id="hero-title">Sustainable.
-						<br>Accessible.
+					<h1 id="hero-title">Accessible.
+						<br>Sustainable.
 						<br>Profitable.
 					</h1>
 					<p class="lead">
-						Improve your web performance, fix common accessibility issues, and reduce your digital carbon
-						footprint with our comprehensive audits.
+						We redesign and recode existing websites for Marketing Directors, ESG leads, and E-commerce
+						teams who need WCAG-aligned experiences and materially lighter digital estates.
 					</p>
 					<p>
-						Aligning your interface with sustainable and inclusive web standards unlocks faster conversions,
-						protects your brand from compliance risks, and satisfies corporate ESG mandates.
+						Our work strips out unnecessary script weight, repairs semantic structure at the source, and
+						turns
+						your interface into a faster, cleaner, more inclusive product for every user and every device.
 					</p>
 					<div class="hero-actions">
-						<a class="hero-btn hero-btn--primary" href="#contact">Book an audit</a>
-						<a class="hero-btn hero-btn--secondary" href="#services">Explore services</a>
+						<a class="hero-btn hero-btn--primary" href="#services">View our services</a>
 					</div>
 				</div>
 				<div class="hero-visual" aria-hidden="true">
@@ -655,31 +692,39 @@
 		<section id="what-we-do" aria-labelledby="what-we-do-title">
 			<h2 id="what-we-do-title">What we do</h2>
 			<div class="what-we-do-grid">
+				<article class="card" aria-labelledby="ux-accessibility-title">
+					<h3 id="ux-accessibility-title">Accessible &amp; Inclusive UX</h3>
+					<p>
+						We ensure your digital infrastructure meets modern web compliance standards (WCAG) to
+						improve your site's accessibility.
+						By correcting unlabelled forms and broken keyboard navigation at the root-code
+						level, we ensure users of assistive technologies
+						can seamlessly use your site. This delivers a frictionless user experience while improving
+						accessibility and digital inclusion.
+					</p>
+				</article>
+
 				<article class="card" aria-labelledby="sustainability-title">
-					<h3 id="sustainability-title">Sustainability</h3>
+					<h3 id="sustainability-title">Digital Sustainability</h3>
 					<p>
-						Reduce your site’s carbon footprint while improving user experience. Our sustainability audits
-						identify high-impact savings, cutting
-						unnecessary resource transfer, optimising hosting patterns, and prioritising changes that lower
-						emissions per visit.
+						We reduce loading times and slash your company's Scope 3 digital carbon emissions
+						simultaneously.
+						By stripping out heavy background file weight and hidden software bloat, your high-traffic pages
+						load instantly on low-power mobile devices and slow data networks - preventing visitors from
+						bouncing
+						to your competitors.
 					</p>
 				</article>
 
-				<article class="card" aria-labelledby="accessibility-title">
-					<h3 id="accessibility-title">Accessibility</h3>
+				<article class="card" aria-labelledby="engineering-title">
+					<h3 id="engineering-title">Value-Driven Engineering Philosophy</h3>
 					<p>
-						Make your product usable for everyone and protect revenue by removing barriers that exclude
-						customers. We prioritise fixes that reduce
-						legal risk, improve conversions, and broaden market reach.
-					</p>
-				</article>
-
-				<article class="card" aria-labelledby="performance-title">
-					<h3 id="performance-title">Web performance</h3>
-					<p>
-						Speed up critical journeys to increase conversion and reduce bounce. Our performance audits find
-						bottlenecks in rendering, network,
-						and third-party behaviour so your fastest users become your happiest customers.
+						We improve digital infrastructure that scales effortlessly without requiring constant, costly
+						patches.
+						Our lean, lightweight coding standard ensures fewer server requests, rapid browser response
+						times,
+						and rock-solid structural stability that keeps your conversion funnels operational and secure
+						for the long haul.
 					</p>
 				</article>
 			</div>
@@ -687,53 +732,70 @@
 
 		<section id="services" aria-labelledby="services-title">
 			<h2 id="services-title">Services</h2>
-			<div class="pricing-matrix" role="list" aria-label="Two-tier digital audit services matrix">
-				<article class="tier" role="listitem" aria-labelledby="tier-one-title">
-					<div class="tier-header">
-						<h3 id="tier-one-title">The Compliance Check</h3>
-					</div>
-					<p class="tier-price">£1,450</p>
-					<p class="tier-focus">Focus: diagnostic risk assessment and baseline health check.</p>
-					<ul class="tier-list">
-						<li>Automated scanning of up to 10 pages</li>
-						<li>Core homepage manual inspection</li>
-						<li>Prioritized matrix of accessibility failures</li>
-						<li>Baseline carbon emission score</li>
-						<li>Interactive Notion remediation dashboard</li>
-					</ul>
-					<a class="tier-action" href="#contact" aria-label="Select The Compliance Check package">Select
-						package</a>
-				</article>
 
-				<article class="tier tier--featured" role="listitem" aria-labelledby="tier-two-title">
-					<div class="tier-header">
-						<h3 id="tier-two-title">The People &amp; Planet Blueprint</h3>
-						<span class="badge" aria-label="Bestseller">Bestseller</span>
-					</div>
-					<p class="tier-price">£2,850</p>
-					<p class="tier-focus">Focus: complete user-journey analysis and diagnostic depth.</p>
-					<ul class="tier-list">
-						<li>Everything in the Compliance Check</li>
-						<li>Manual testing of 4 core transactional user journeys</li>
-						<li>Keyboard layout and native screen reader assessment</li>
-						<li>Payload optimization blueprint (images, JS, fonts)</li>
-						<li>Pre-recorded 10-minute video walkthrough</li>
-					</ul>
-					<a class="tier-action" href="#contact"
-						aria-label="Select The People and Planet Blueprint package">Select package</a>
-				</article>
-			</div>
+			<!-- Tier 1: Accessibility Core -->
+			<article class="tier" aria-labelledby="tier-one-title">
+				<h3 id="tier-one-title">The Accessibility Core</h3>
+				<p class="tier-price"><strong>£1,850</strong><span>Fixed Project Fee</span></p>
+				<p class="tier-focus">Improve your site's accessibility and digital inclusions on up to 5 core pages for assistive software.</p>
+				<ul class="tier-list">
+					<li><strong>Heading Structure:</strong> Re-nesting tags cleanly for error-free screen reading.</li>
+					<li><strong>Keyboard Navigation:</strong> Coding clear visual focus rings for mouse-free browsing.
+					</li>
+					<li><strong>Alt-Text Engineering:</strong> Manually embedding descriptions behind your visual media.
+					</li>
+					<li><strong>Form Input Repair:</strong> Fixing fields and error notices for seamless completion.
+					</li>
+				</ul>
+				<a class="tier-action" href="#contact" data-primary-focus="accessibility"
+					aria-label="Contact us about the Compliance Core package">Contact us</a>
+			</article>
+
+			<!-- Tier 2: Sustainability Core -->
+			<article class="tier" aria-labelledby="tier-two-title">
+				<h3 id="tier-two-title">The Green Package</h3>
+				<p class="tier-price"><strong>£1,850</strong><span>Fixed Project Fee</span></p>
+				<p class="tier-focus">Lower your environmental impact by stripping invisible weight and software bloat from 5 core pages.</p>
+				<ul class="tier-list">
+					<li><strong>Image Modernization:</strong> Converting heavy graphics to WebP/AVIF next-gen formats.
+					</li>
+					<li><strong>Script Purging:</strong> Tracking down and removing ancient third-party data tracking
+						bloat.</li>
+					<li><strong>Instant Server Response:</strong> Cleaning up backend network requests for rapid loading
+						speeds.</li>
+					<li><strong>Green Scorecard:</strong> A verified Before-and-After digital carbon output report.</li>
+				</ul>
+				<a class="tier-action" href="#contact" data-primary-focus="sustainability"
+					aria-label="Contact us about the Green Performance package">Contact us</a>
+			</article>
+
+			<!-- Tier 3: Combined Premium Offering -->
+			<article class="tier tier--featured" aria-labelledby="tier-three-title">
+				<h3 id="tier-three-title">The Best of Both Worlds</h3>
+				<span class="badge" aria-label="Best Value">Best Value</span>
+				<p class="tier-price"><strong>£3,350</strong><span>Fixed Project Fee</span></p>
+				<p class="tier-focus">Benefit from a comprehensive approach that combines accessibility and sustainability for maximum impact.</p>
+				<ul class="tier-list">
+					<li><strong>Accessibility Core:</strong> All deliverables from the Accessibility tier.</li>
+					<li><strong>Green Package:</strong> All deliverables from the Green tier.</li>
+					<li><strong>User Experience:</strong> Enhanced usability and intuitive navigation.</li>
+					<li><strong>Green Scorecard:</strong> A verified Before-and-After digital carbon output report.</li>
+					</li>
+				</ul>
+				<a class="tier-action" href="#contact" data-primary-focus="both"
+					aria-label="Contact us about the Comprehensive Engine package">Contact us</a>
+			</article>
 		</section>
 
 		<section id="contact" aria-labelledby="contact-title">
 			<h2 id="contact-title">Contact us</h2>
 			<form id="contact-form" action="#" method="post" tabindex="-1">
 				<div class="field">
-					<label for="name">Name</label>
+					<label for="name">Full name</label>
 					<input id="name" name="name" type="text" autocomplete="name" required />
 				</div>
 				<div class="field">
-					<label for="email">Work Email</label>
+					<label for="email">Work email</label>
 					<input id="email" name="email" type="email" autocomplete="email" required />
 				</div>
 				<div class="field">
@@ -741,15 +803,16 @@
 					<input id="website" name="website" type="url" inputmode="url" required />
 				</div>
 				<div class="field">
-					<label for="selected-tier">Selected Tier</label>
+					<label for="selected-tier">Primary focus</label>
 					<select id="selected-tier" name="selected-tier">
 						<option value="" selected>Not sure yet / General inquiry</option>
-						<option value="compliance-check">The Compliance Check (£1,450)</option>
-						<option value="people-planet-blueprint">The People &amp; Planet Blueprint (£2,850)</option>
+						<option value="accessibility">The Accessibility Core</option>
+						<option value="sustainability">The Green Package</option>
+						<option value="both">The Best of Both Worlds</option>
 					</select>
 				</div>
 				<div class="field">
-					<label for="message">Message (Optional)</label>
+					<label for="message">Project notes</label>
 					<textarea id="message" name="message"></textarea>
 				</div>
 				<button type="submit">Submit</button>
@@ -759,12 +822,20 @@
 
 	<footer>
 		<div class="wrap">
-			<p class="micro-proof">
-				Hosted on renewable server grids and optimised for ultra-low carbon visits, emitting less than 0.01g of
-				CO2 per visit.
-			</p>
+			<p class="micro-proof">&copy; 2026 Green Impact Studios. All rights reserved. Built with clean, sustainable
+				code.</p>
 		</div>
 	</footer>
+
+	<script>
+		const focusSelect = document.getElementById('selected-tier');
+		document.querySelectorAll('.tier-action[data-primary-focus]').forEach((link) => {
+			link.addEventListener('click', () => {
+				if (!focusSelect) return;
+				focusSelect.value = link.dataset.primaryFocus || '';
+			});
+		});
+	</script>
 </body>
 
 </html>

@@ -1,0 +1,462 @@
+/* ==========================================================================
+   1. GLOBAL STYLES & VARIABLE SYSTEM
+   ========================================================================== */
+:root {
+  --color-primary: #0252CD;        /* Skip Link Brand Blue */
+  --color-primary-hover: #003da1;  /* High-contrast dark blue */
+  --color-text-main: #1a1a1a;
+  --color-text-muted: #575757;
+  --color-bg-light: #f9f9f9;
+  --color-bg-card: #ffffff;
+  --color-border: #e2e8f0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--color-text-main);
+  line-height: 1.5;
+  scroll-behavior: smooth; 
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Base structural cushion to prevent fixed header from overlapping anchor tags */
+section {
+  scroll-margin-top: 6rem; 
+}
+
+body {
+  background-color: #ffffff;
+}
+
+/* ==========================================================================
+   2. HEADER & NAVIGATION
+   ========================================================================== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-border);
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--color-text-main);
+  letter-spacing: -0.02em;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+nav a:hover,
+nav a:focus {
+  color: var(--color-primary);
+  outline: none;
+}
+
+/* ==========================================================================
+   3. UNIFIED SITE SECTION HEADERS
+   ========================================================================== */
+.section-intro,
+.benefits-intro {
+  max-width: 760px;
+  margin-bottom: 4rem;
+}
+
+.section-intro .subheading,
+.benefits-intro .subheading {
+  display: inline-block;
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+}
+
+.our-services h2,
+.benefits-intro h2,
+.placeholder-section h2 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-text-main);
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   4. HERO SECTION (Asymmetric Side-by-Side)
+   ========================================================================== */
+.hero {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 11rem 2rem 6rem 2rem; 
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-text-block h1 {
+  font-size: 3.75rem; /* Expanded Bolder Presentation scale */
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+}
+
+.hero-text-block p {
+  font-size: 1.25rem;
+  color: var(--color-text-muted);
+  max-width: 540px;
+}
+
+.hero-graphic-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.hero-laptop-svg {
+  width: 100%;
+  max-width: 440px; /* Expanded graphic footprint */
+  height: auto;
+}
+
+.svg-laptop-lid {
+  stroke: var(--color-text-main);
+  fill: var(--color-bg-light);
+}
+
+.svg-screen-content {
+  stroke: var(--color-primary);
+  stroke-width: 4;
+  opacity: 0.85;
+}
+
+.svg-laptop-base {
+  fill: var(--color-text-main);
+}
+
+.svg-line-base {
+  stroke: var(--color-text-main);
+  fill: #d1d5db;
+}
+
+/* ==========================================================================
+   5. WHAT WE DO (BENEFITS LOGISTICS)
+   ========================================================================== */
+.benefits-section {
+  background-color: var(--color-bg-light);
+  padding: 6rem 2rem;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.benefits-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.benefits-intro p {
+  font-size: 1.15rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-top: 1.25rem;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 3rem;
+}
+
+.benefit-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.benefit-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.benefit-item h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-text-main);
+}
+
+.benefit-item p {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   6. SERVICES SECTION & CARDS
+   ========================================================================== */
+.our-services {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+}
+
+.card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 2.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.badge-best-seller {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  background-color: #fef3c7;
+  color: #92400e;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Explicit Heading to Price Lockout Constraints */
+.our-services .card h3 {
+  font-size: 1.35rem;
+  margin-bottom: 0 !important;
+  padding-bottom: 2px !important;
+}
+
+.our-services .card .price {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.card p {
+  color: var(--color-text-muted);
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.deliverables-list {
+  list-style: none;
+  margin-bottom: 2.5rem;
+  margin-top: auto; 
+}
+
+.deliverables-list li {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.75rem;
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.deliverables-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   7. BUTTONS & ACTIONS (Unified Brand Blue)
+   ========================================================================== */
+.btn {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: #FFFFFF !important;
+  padding: 0.8rem 1.6rem;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: var(--color-primary-hover);
+  outline: 3px solid transparent; 
+}
+
+/* ==========================================================================
+   8. PLACEHOLDERS (Allows scrolling floor area)
+   ========================================================================== */
+.placeholder-section {
+  min-height: 100vh; 
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
+  border-top: 1px solid var(--color-border);
+}
+
+/* ==========================================================================
+   9. RESPONSIVE LAYOUT OVERRIDES
+   ========================================================================== */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding-top: 8rem;
+    gap: 3rem;
+  }
+  
+  .hero-text-block h1 {
+    font-size: 2.75rem;
+  }
+  
+  .hero-text-block p {
+    margin: 0 auto;
+  }
+  
+  .hero-laptop-svg {
+    max-width: 320px;
+  }
+
+  .our-services h2,
+  .benefits-intro h2,
+  .placeholder-section h2 {
+    font-size: 2rem;
+  }
+}
+
+/* ==========================================================================
+   10. CONTACT FORM STYLES
+   ========================================================================== */
+.contact-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.contact-container {
+  max-width: 600px; /* Constrains form width so lines of input are comfortable to scan */
+  margin: 0;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: var(--color-text-main);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+}
+
+/* Custom drop-down arrow handling for clean presentation */
+.form-group select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23575757' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.25rem;
+  padding-right: 2.5rem;
+}
+
+/* High-contrast accessible focus ring states */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(2, 82, 205, 0.15);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #a0aec0;
+  opacity: 1;
+}
+
+/* Form Action Buttons */
+.btn-submit {
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  align-self: flex-start; /* Keeps button proportional to text length rather than full-width stretch */
+  padding: 0.9rem 2.5rem;
+}
+
+@media (max-width: 600px) {
+  .btn-submit {
+    width: 100%; /* Spans full width gracefully on mobile devices */
+    text-align: center;
+  }
+}
